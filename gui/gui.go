@@ -333,10 +333,13 @@ func (g *Game) Update() error {
 				}
 			}
 
+			// check if the player clicked the "Go to menu" button
 			btn3X := (ScreenWidth - 120) / 2
 			btn3Y := panelY + (panelHeight-40)/2 + 25
 			if x >= btn3X && x <= btn3X+120 && y >= btn3Y && y <= btn3Y+40 {
 				g.state = stateMenu
+				g.selectedSource = globals.NoSquare
+				g.movesMade = 0
 				g.cvc = false
 				g.pvp = false
 				g.pvc = false
@@ -424,6 +427,11 @@ func (g *Game) Update() error {
 					fen := "ppppp/ppppp/ppppp/5/5/5/PPPPP/" + bottomRow + " w -"
 					board.ParseFEN(fen)
 					g.state = statePlaying
+					g.state = statePlaying
+					g.movesMade = 0
+					g.selectedSource = globals.NoSquare
+					g.clock = clock.NewGameClock()
+					log.Println("Game started (from menu)")
 				} else {
 					log.Println("Cannot set position: duplicate pieces selected")
 				}

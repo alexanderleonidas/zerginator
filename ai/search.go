@@ -101,7 +101,6 @@ func negamax(depth int, alpha int, beta int) int {
 	if globals.Ply != 0 && score != noHashEntry && beta-alpha > 1 {
 		return score
 	}
-
 	if score != noHashEntry && globals.Ply >= 1 {
 		return score
 	}

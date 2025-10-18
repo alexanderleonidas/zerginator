@@ -224,17 +224,17 @@ func RestoreBoard(bitboards [6]uint64, occupancies [3]uint64, sideToMove int, en
 }
 
 func IsTerminalPosition() bool {
-	// Black side wins if a black paw reaches white bottom row
+	// The black side wins if a black pawn reaches the white bottom row
 	for square := globals.A1; square <= globals.E1; square++ {
 		if bitoperations.GetBit(globals.Bitboards[globals.BlackPawn], square) == 1 {
 			return true
 		}
 	}
-	// Black side wins if all white pieces are captured
+	// The black side wins if all white pieces are captured
 	if globals.Occupancies[globals.WHITE] == 0 {
 		return true
 	}
-	// White side wins if all white pieces are captured
+	// The white side wins if all white pieces are captured
 	if globals.Occupancies[globals.BLACK] == 0 {
 		return true
 	}
