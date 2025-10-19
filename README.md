@@ -8,7 +8,7 @@ Zerginator is a chess engine written in Go. It provides a UCI-compatible engine 
 - Bitboard representation
 - Negamax Alpha-Beta search and enhancements
 
-- ## Implemented techniques
+## Implemented techniques
 - Bitboards for board representation and fast bitwise operations.
 - Leaper attack tables (pawn, knight, king) precomputed at init.
 - Sliding attack generation for rook/bishop on-the-fly (masking & occupancy).
