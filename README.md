@@ -1,31 +1,30 @@
 # Zerginator
 
-Zerginator is a chess engine written in Go. It provides a UCI-compatible headless engine and an optional graphical front-end using `github.com/hajimehoshi/ebiten/v2`. The project focuses on a compact, efficient bitboard-based implementation with tools for testing (perft), evaluation and move-generation.
+Zerginator is a chess engine written in Go. It provides a UCI-compatible engine and an optional graphical front-end using `github.com/hajimehoshi/ebiten/v2`. The project focuses on a compact, efficient bitboard-based implementation with tools for testing (perft), evaluation and move-generation.
 
 ## Key features
 - UCI protocol support (`uci` package) — interactive engine mode and `go depth N` parsing.
 - Optional GUI using `ebiten` (`gui` package).
-- Bitboard representation for board state.
-- Fast move generation and legality checking (`board`, `moves` concepts).
-- Perft and debugging helpers for correctness testing.
-- FEN parsing and position setup.
-- Zobrist hashing (random keys) and a transposition table (`ai` / `board`).
-- Pawn evaluation masks and evaluation scaffolding (`ai`).
-- Compact encoded move representation and make/unmake move routines.
+- Bitboard representation
+- Negamax Alpha-Beta search and enhancements
 
-## Implemented algorithms & techniques
+- ## Implemented techniques
 - Bitboards for board representation and fast bitwise operations.
 - Leaper attack tables (pawn, knight, king) precomputed at init.
 - Sliding attack generation for rook/bishop on-the-fly (masking & occupancy).
-- Zobrist hashing (random keys) for position keys.
-- Transposition table (hash table) for cached search results.
+- Magic bitboards / magic number generator (commented in code for future use).
 - Packed move encoding (single integer) for efficient move lists.
 - FEN parsing and position setup for testing and UCI.
 - Perft driver for move-generation verification.
 
-## Planned / experimental features
-- Magic bitboards / magic number generator (commented in code for future use).
-- Additional search enhancements (tuning move ordering, quiescence, iterative deepening, etc.).
+## Search & enhancements
+- Negamax Alpha-beta search with iterative deepening and principal-variation extraction
+- Quiescence search to avoid horizon effects
+- Aspiration windows for tighter bounds between iterations
+- Null-move pruning
+- Late Move Reduction (LMR)
+- Move ordering: PV move, captures (MVV/LVA), killer moves, history heuristic
+- Transposition table lookup/store (Zobrist keys) and repetition detection
 
 ## Project structure (high level)
 - `main.go` — program entry, init routines and mode selection (GUI / UCI / debug).
